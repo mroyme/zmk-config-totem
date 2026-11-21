@@ -1,17 +1,10 @@
-/*
- * Copyright (c) 2022 The ZMK Contributors
- *
- * SPDX-License-Identifier: MIT
- */
-
- #include "totem.dtsi"
-
- &kscan0 {
-     col-gpios
-         = <&xiao_d 8 GPIO_ACTIVE_HIGH>
-         , <&xiao_d 9 GPIO_ACTIVE_HIGH>
-         , <&xiao_d 10 GPIO_ACTIVE_HIGH>
-         , <&xiao_d 5 GPIO_ACTIVE_HIGH>
-         , <&xiao_d 4 GPIO_ACTIVE_HIGH>
-         ;
- };
+#include "totem.dtsi"
+/ {
+    chosen { zmk,kscan = &mock_kscan; };
+    mock_kscan: mock_kscan {
+        compatible = "zmk,kscan-mock";
+        rows = <0>; columns = <0>; events = <0>;
+    };
+};
+&kscan0 { status = "disabled"; };
+&default_layout { kscan = <&mock_kscan>; };
